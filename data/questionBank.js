@@ -1,0 +1,208 @@
+/**
+ * questionBank.js
+ * Static offline question bank for StudyMate AI.
+ * Structure: { [subject]: { easy: [...], medium: [...], hard: [...] } }
+ * Each entry: { q: "question text", a: "answer text" }
+ */
+
+export const QUESTION_BANK = {
+
+  Mathematics: {
+    easy: [
+      { q: 'What is 7 × 8?', a: '56' },
+      { q: 'Express 3/4 as a percentage.', a: '75%' },
+      { q: 'What is 20% of 150?', a: '30' },
+      { q: 'What is the area of a rectangle with length 9 cm and width 4 cm?', a: 'Area = length × width = 9 × 4 = 36 cm²' },
+      { q: 'What is the perimeter of a rectangle with length 6 m and width 3 m?', a: 'Perimeter = 2(l + w) = 2(6 + 3) = 18 m' },
+      { q: 'Evaluate: 3 + 4 × 2 − 1', a: 'Following order of operations (BODMAS/PEMDAS): 4 × 2 = 8 first, then 3 + 8 − 1 = 10' },
+      { q: 'Simplify the fraction 12/16.', a: '12/16 = 3/4 (divide both by 4)' },
+      { q: 'What is the square root of 144?', a: '12' },
+    ],
+    medium: [
+      { q: 'Solve the quadratic equation x² − 5x + 6 = 0.', a: 'Factorise: (x − 2)(x − 3) = 0, so x = 2 or x = 3' },
+      { q: 'Solve the simultaneous equations: 2x + y = 7 and x − y = 2.', a: 'Adding: 3x = 9, x = 3; substituting: y = 1' },
+      { q: 'A right-angled triangle has legs of length 6 cm and 8 cm. Find the hypotenuse.', a: 'By Pythagoras: c² = 6² + 8² = 36 + 64 = 100, so c = 10 cm' },
+      { q: 'A bag contains 3 red and 5 blue balls. What is the probability of picking a red ball?', a: '3/8' },
+      { q: 'Expand and simplify (x + 3)(x − 2).', a: 'x² − 2x + 3x − 6 = x² + x − 6' },
+      { q: 'Rearrange y = 3x + 7 to make x the subject.', a: 'x = (y − 7) / 3' },
+      { q: 'Factorise 6x² + 9x.', a: '3x(2x + 3)' },
+      { q: 'Find the gradient of the line passing through (1, 2) and (4, 8).', a: 'Gradient = (8 − 2) / (4 − 1) = 6 / 3 = 2' },
+    ],
+    hard: [
+      { q: 'Differentiate f(x) = 3x⁴ − 5x² + 2x − 7.', a: "f'(x) = 12x³ − 10x + 2" },
+      { q: 'Evaluate the definite integral ∫₀² (2x + 1) dx.', a: '[x² + x]₀² = (4 + 2) − (0 + 0) = 6' },
+      { q: 'Prove that sin²θ + cos²θ = 1 using the unit circle definition.', a: 'For a point (cosθ, sinθ) on the unit circle, by the Pythagorean theorem: cos²θ + sin²θ = 1²' },
+      { q: 'State the binomial theorem and expand (1 + x)³.', a: "(1+x)³ = Σ C(3,k) xᵏ = 1 + 3x + 3x² + x³" },
+      { q: 'Find the modulus and argument of the complex number z = 3 + 4i.', a: '|z| = √(9 + 16) = 5; arg(z) = arctan(4/3) ≈ 53.1°' },
+      { q: 'Multiply matrices A = [[1,2],[3,4]] and B = [[5,6],[7,8]].', a: 'AB = [[1×5+2×7, 1×6+2×8],[3×5+4×7, 3×6+4×8]] = [[19,22],[43,50]]' },
+      { q: 'Find dy/dx using implicit differentiation for x² + y² = 25.', a: '2x + 2y(dy/dx) = 0 → dy/dx = −x/y' },
+      { q: 'Use the chain rule to differentiate f(x) = sin(3x²).', a: "f'(x) = cos(3x²) × 6x = 6x cos(3x²)" },
+    ],
+  },
+
+  Physics: {
+    easy: [
+      { q: 'What is the difference between speed and velocity?', a: 'Speed is a scalar quantity (magnitude only); velocity is a vector quantity (magnitude and direction).' },
+      { q: 'Define acceleration.', a: 'Acceleration is the rate of change of velocity with respect to time. Unit: m/s².' },
+      { q: 'State Newton\'s First Law of Motion.', a: 'An object remains at rest or in uniform motion in a straight line unless acted upon by a resultant external force.' },
+      { q: 'What is the SI unit of force?', a: 'Newton (N)' },
+      { q: 'Name the three states of matter.', a: 'Solid, liquid, and gas.' },
+      { q: 'In a simple series circuit, what happens to current at different points?', a: 'The current is the same at all points in a series circuit.' },
+      { q: 'What does the symbol "v" represent in kinematics equations?', a: 'v typically represents final velocity (in m/s).' },
+      { q: 'Give the unit of electrical resistance.', a: 'Ohm (Ω)' },
+    ],
+    medium: [
+      { q: 'A 5 kg object experiences a net force of 20 N. What is its acceleration?', a: 'F = ma → a = F/m = 20/5 = 4 m/s²' },
+      { q: 'Calculate the kinetic energy of a 2 kg object moving at 6 m/s.', a: 'KE = ½mv² = ½ × 2 × 36 = 36 J' },
+      { q: 'State Ohm\'s Law and write its formula.', a: 'Voltage across a conductor is proportional to current through it (at constant temperature): V = IR' },
+      { q: 'A wave has frequency 50 Hz and wavelength 3 m. What is its speed?', a: 'v = fλ = 50 × 3 = 150 m/s' },
+      { q: 'A diver is 5 m below the surface of water (density 1000 kg/m³, g = 10 m/s²). What is the pressure due to the water?', a: 'P = ρgh = 1000 × 10 × 5 = 50 000 Pa' },
+      { q: 'What is the gravitational potential energy of a 3 kg book held 2 m above the ground? (g = 10 m/s²)', a: 'GPE = mgh = 3 × 10 × 2 = 60 J' },
+      { q: 'Two resistors of 4 Ω and 6 Ω are connected in series. What is the total resistance?', a: 'R_total = 4 + 6 = 10 Ω' },
+      { q: 'State the principle of conservation of energy.', a: 'Energy cannot be created or destroyed; it can only be converted from one form to another.' },
+    ],
+    hard: [
+      { q: 'Explain electromagnetic induction and state Faraday\'s Law.', a: 'When the magnetic flux through a circuit changes, an EMF is induced. Faraday\'s Law: EMF = −dΦ/dt (rate of change of flux).' },
+      { q: 'What is the photoelectric effect and what does it suggest about light?', a: 'Electrons are emitted from a metal when light above a threshold frequency shines on it, suggesting light is quantised into photons (E = hf).' },
+      { q: 'State Einstein\'s two postulates of special relativity.', a: '1) The laws of physics are the same in all inertial frames. 2) The speed of light in a vacuum is constant for all observers.' },
+      { q: 'State the First and Second Laws of Thermodynamics.', a: '1st: Energy is conserved (ΔU = Q − W). 2nd: Entropy of an isolated system always increases or stays the same.' },
+      { q: 'What is gravitational field strength g? How does it change with distance from a planet?', a: 'g = GM/r² (N/kg). It decreases with the square of the distance from the planet\'s centre.' },
+      { q: 'Describe how a transformer works and give the turns ratio equation.', a: 'Changing current in the primary coil induces an EMF in the secondary via mutual induction. V_s/V_p = N_s/N_p.' },
+      { q: 'Explain wave-particle duality of electrons with reference to de Broglie.', a: 'Electrons exhibit both wave and particle behaviour. De Broglie wavelength: λ = h/mv.' },
+      { q: 'Derive the equation for escape velocity from a planet of mass M and radius R.', a: '½mv² = GMm/R → v = √(2GM/R)' },
+    ],
+  },
+
+  Chemistry: {
+    easy: [
+      { q: 'What do elements in the same group of the periodic table have in common?', a: 'They have the same number of electrons in their outer shell, giving them similar chemical properties.' },
+      { q: 'What is the chemical symbol for gold?', a: 'Au' },
+      { q: 'What is the chemical symbol for sodium?', a: 'Na' },
+      { q: 'What are the three states of matter and how do they differ in particle arrangement?', a: 'Solid (closely packed, fixed positions), liquid (close but free to move), gas (widely spread, fast movement).' },
+      { q: 'Give a simple definition of an acid.', a: 'An acid is a substance that donates protons (H⁺ ions) in solution; it has a pH below 7.' },
+      { q: 'What is the difference between a physical and a chemical change?', a: 'A physical change (e.g., melting) is reversible and no new substance is formed. A chemical change (e.g., burning) produces new substances.' },
+      { q: 'What is the chemical formula of water?', a: 'H₂O' },
+      { q: 'Which group of the periodic table contains the noble gases?', a: 'Group 0 (or Group 18).' },
+    ],
+    medium: [
+      { q: 'Balance the following equation: H₂ + O₂ → H₂O', a: '2H₂ + O₂ → 2H₂O' },
+      { q: 'Calculate the molar mass of CaCO₃ (Ca=40, C=12, O=16).', a: '40 + 12 + (3 × 16) = 100 g/mol' },
+      { q: 'What does a pH of 3 indicate compared to a pH of 6?', a: 'pH 3 is 1000 times more acidic than pH 6 (each unit is a 10× change in [H⁺]).' },
+      { q: 'What is the oxidation state of sulphur in H₂SO₄?', a: '+6 (H is +1 each ×2, O is −2 each ×4; total: 2 + x − 8 = 0 → x = +6)' },
+      { q: 'What is the difference between ionic and covalent bonding?', a: 'Ionic bonding: transfer of electrons between metal and non-metal. Covalent bonding: sharing of electrons between non-metals.' },
+      { q: 'How many moles are in 44 g of CO₂? (C=12, O=16)', a: 'Molar mass of CO₂ = 44 g/mol; moles = 44/44 = 1 mol' },
+      { q: 'What is a redox reaction?', a: 'A reaction involving simultaneous oxidation (loss of electrons) and reduction (gain of electrons).' },
+      { q: 'Explain why sodium chloride has a high melting point.', a: 'NaCl has a giant ionic lattice with strong electrostatic forces between Na⁺ and Cl⁻ ions, requiring a lot of energy to break.' },
+    ],
+    hard: [
+      { q: 'Write the expression for the equilibrium constant Kc for the reaction: N₂ + 3H₂ ⇌ 2NH₃', a: 'Kc = [NH₃]² / ([N₂][H₂]³)' },
+      { q: 'Explain how an electrochemical cell generates electricity.', a: 'Two half-cells with different electrode potentials are connected; spontaneous redox reactions at the electrodes drive electron flow through the external circuit.' },
+      { q: 'Describe the mechanism of nucleophilic substitution (SN2) for a primary haloalkane.', a: 'The nucleophile attacks the carbon bearing the leaving group from the back, simultaneously displacing the leaving group via a transition state; results in inversion of configuration.' },
+      { q: 'What is entropy and how does it relate to the Second Law of Thermodynamics?', a: 'Entropy (S) is a measure of disorder. The Second Law states that the total entropy of the universe always increases in a spontaneous process.' },
+      { q: 'Avogadro\'s constant is 6.022 × 10²³ mol⁻¹. How many atoms are in 2 mol of iron?', a: '2 × 6.022 × 10²³ = 1.204 × 10²⁴ atoms' },
+      { q: 'Describe Le Chatelier\'s Principle and apply it to the Haber Process.', a: 'If a system at equilibrium is disturbed, it shifts to oppose the change. In the Haber Process, high pressure and low temperature (but a catalyst is used for rate) favour NH₃ production.' },
+      { q: 'Explain buffer solutions with an example.', a: 'A buffer resists pH changes. A weak acid (e.g., CH₃COOH) and its conjugate base (CH₃COO⁻) neutralise added H⁺ or OH⁻ to maintain pH.' },
+      { q: 'What is a standard electrode potential and how is EMF of a cell calculated?', a: 'Standard electrode potential E° is measured relative to the standard hydrogen electrode (SHE = 0 V). Cell EMF = E°(cathode) − E°(anode).' },
+    ],
+  },
+
+  Biology: {
+    easy: [
+      { q: 'What is the function of the mitochondria?', a: 'The mitochondria are the site of aerobic respiration; they produce ATP (energy) for the cell.' },
+      { q: 'Write the word equation for photosynthesis.', a: 'Carbon dioxide + Water → Glucose + Oxygen (using light energy)' },
+      { q: 'Give an example of a food chain with at least three organisms.', a: 'Grass → Rabbit → Fox (producer → primary consumer → secondary consumer)' },
+      { q: 'Name three major organ systems in the human body.', a: 'E.g., circulatory system, digestive system, nervous system (any three are acceptable).' },
+      { q: 'What does DNA stand for and where is it found in a cell?', a: 'Deoxyribonucleic Acid. Found mainly in the nucleus (also in mitochondria and chloroplasts).' },
+      { q: 'What is the function of the cell membrane?', a: 'It controls what enters and leaves the cell, maintaining the internal environment.' },
+      { q: 'What is osmosis?', a: 'Osmosis is the movement of water molecules from a region of higher water potential to a region of lower water potential through a partially permeable membrane.' },
+      { q: 'Name the four bases found in DNA.', a: 'Adenine (A), Thymine (T), Cytosine (C), and Guanine (G).' },
+    ],
+    medium: [
+      { q: 'What is the difference between mitosis and meiosis?', a: 'Mitosis produces 2 genetically identical diploid cells (for growth/repair); meiosis produces 4 genetically varied haploid cells (for sexual reproduction).' },
+      { q: 'Explain the lock-and-key model of enzyme action.', a: 'Each enzyme has an active site with a complementary shape to its specific substrate. The substrate binds to form an enzyme-substrate complex; products are released and the enzyme is unchanged.' },
+      { q: 'Describe natural selection in four steps.', a: '1) Variation exists in a population. 2) Struggle for survival due to limited resources. 3) Organisms with favourable traits survive and reproduce. 4) Favourable traits are passed to offspring.' },
+      { q: 'What are the genotypic ratios in a monohybrid cross between two heterozygous parents (Aa × Aa)?', a: 'Genotype ratio: 1 AA : 2 Aa : 1 aa. Phenotype ratio: 3 dominant : 1 recessive.' },
+      { q: 'Write the word equation for aerobic respiration.', a: 'Glucose + Oxygen → Carbon dioxide + Water (+ energy released as ATP)' },
+      { q: 'What is the role of the ribosome in a cell?', a: 'Ribosomes are the site of protein synthesis (translation); they read mRNA and assemble amino acids into polypeptide chains.' },
+      { q: 'Explain the difference between dominant and recessive alleles.', a: 'A dominant allele is expressed whenever present; a recessive allele is only expressed when two copies are present (homozygous recessive).' },
+      { q: 'What is the greenhouse effect and how does it relate to biology?', a: 'Greenhouse gases (CO₂, CH₄) trap heat in the atmosphere. Deforestation and decomposition affect CO₂ levels, linking biological processes to climate change.' },
+    ],
+    hard: [
+      { q: 'Describe the process of protein synthesis including transcription and translation.', a: 'Transcription: DNA unwinds in the nucleus; RNA polymerase synthesises mRNA from the template strand. Translation: mRNA moves to ribosomes; tRNA anticodons match codons to deliver amino acids, forming a polypeptide.' },
+      { q: 'What are operons? Describe the lac operon in E. coli.', a: 'An operon is a cluster of genes regulated together. The lac operon is switched off by a repressor protein binding the operator when lactose is absent; lactose binds the repressor, releasing the operator, allowing RNA polymerase to transcribe lac genes.' },
+      { q: 'Describe the primary and secondary immune responses to a pathogen.', a: 'Primary: first exposure, B-cells proliferate and differentiate; antibody levels rise slowly, memory B-cells formed. Secondary: faster, stronger antibody response due to memory B-cells; pathogen cleared before symptoms develop.' },
+      { q: 'What evidence supports the theory of evolution by natural selection?', a: 'Fossil record, comparative anatomy (homologous structures), molecular evidence (DNA/protein similarities), direct observation of evolution in bacteria, and biogeographical distribution of species.' },
+      { q: 'Explain the concept of carrying capacity and how it affects population growth.', a: 'Carrying capacity (K) is the maximum population a habitat can support with available resources. As population approaches K, limiting factors increase death rate and reduce birth rate, causing logistic (S-shaped) growth.' },
+      { q: 'What is the role of ATP in cellular processes?', a: 'ATP (adenosine triphosphate) is the universal energy currency. It releases energy by hydrolysis (ATP → ADP + Pᵢ), powering metabolic reactions, active transport, muscle contraction, and protein synthesis.' },
+      { q: 'Explain sympatric speciation.', a: 'New species arise from a single ancestral population in the same geographic area, usually through reproductive isolation caused by polyploidy, sexual selection, or ecological divergence without physical separation.' },
+      { q: 'Describe the complement system in innate immunity.', a: 'The complement system is a cascade of plasma proteins that, when activated, opsonise pathogens (marking them for phagocytosis), form membrane attack complexes (MACs) to lyse bacteria, and promote inflammation.' },
+    ],
+  },
+
+  History: {
+    easy: [
+      { q: 'In which year did World War I begin?', a: '1914' },
+      { q: 'In which year did World War II end?', a: '1945' },
+      { q: 'Who was the French Emperor famous for his military campaigns across Europe?', a: 'Napoleon Bonaparte' },
+      { q: 'Who served as British Prime Minister during most of World War II?', a: 'Winston Churchill' },
+      { q: 'In which year did Christopher Columbus arrive in the Americas?', a: '1492' },
+      { q: 'In which year did the French Revolution begin?', a: '1789' },
+      { q: 'What was the Renaissance?', a: 'A cultural and intellectual movement in 14th–17th century Europe that revived interest in classical Greek and Roman ideas, producing advances in art, science, and literature.' },
+      { q: 'What empire did Julius Caesar help build?', a: 'The Roman Empire' },
+    ],
+    medium: [
+      { q: 'Give three main causes of World War I.', a: 'Militarism (arms race), Alliance systems (Triple Entente vs Triple Alliance), Imperialism (competition for colonies), and the assassination of Archduke Franz Ferdinand (immediate trigger).' },
+      { q: 'Briefly describe what the Cold War was.', a: 'A period of geopolitical tension (1947–1991) between the United States (and Western allies) and the Soviet Union (and Eastern bloc), characterised by proxy wars, an arms race, and ideological rivalry rather than direct warfare.' },
+      { q: 'Describe two major effects of the Industrial Revolution on society.', a: 'Urbanisation (people moved to cities for factory work); rise of the working class and new social inequalities; technological advances; environmental pollution.' },
+      { q: 'What were two major impacts of European colonialism on colonised peoples?', a: 'Exploitation of resources and labour; displacement and cultural suppression of indigenous peoples; introduction of new diseases; long-term economic underdevelopment.' },
+      { q: 'What was the Treaty of Versailles and why was it controversial?', a: 'The 1919 peace treaty ending WWI. It blamed Germany (War Guilt Clause), imposed heavy reparations, stripped Germany of territory, and is widely seen as contributing to the conditions that led to WWII.' },
+      { q: 'What was the significance of the Berlin Wall (1961–1989)?', a: 'It physically divided East and West Berlin, symbolising the Iron Curtain and the Cold War divide between communist Eastern Europe and the democratic West. Its fall in 1989 symbolised the end of the Cold War.' },
+      { q: 'Who was Nelson Mandela and what was his historical significance?', a: 'South African anti-apartheid activist and statesman who was imprisoned for 27 years and became South Africa\'s first Black president (1994), symbolising the end of apartheid.' },
+      { q: 'What caused the Great Depression (1929)?', a: 'The Wall Street Crash of October 1929 triggered a global economic collapse; causes included over-speculation, bank failures, falling demand, and poor monetary policy.' },
+    ],
+    hard: [
+      { q: 'What is historiography? Give an example of how different historians have interpreted the same event differently.', a: 'Historiography is the study of how history is written and how interpretations change over time. Example: WWI causes — earlier historians blamed German aggression (Fischer thesis), while later historians emphasised the shared responsibility of multiple powers.' },
+      { q: 'Compare the French Revolution (1789) and the Russian Revolution (1917). What were common causes and different outcomes?', a: 'Both: inequality, weak/corrupt leadership, economic hardship, ideological change. France → liberal democracy over time; Russia → communist Soviet state. France avoided a long civil war; Russia endured one. France\'s revolution exported nationalism; Russia\'s exported communism.' },
+      { q: 'Analyse the long-term causes of European imperialism in the 19th century.', a: 'Economic: demand for raw materials and new markets. Political: nationalism and competition for global power. Ideological: Social Darwinism and the "civilising mission." Technological: military and transport advantages. All converged to drive European conquest of Africa and Asia.' },
+      { q: 'How was the post-WWII world order shaped by the outcomes of the war?', a: 'Creation of the UN (1945) for collective security; USA and USSR emerged as superpowers, dividing the world into spheres of influence; decolonisation accelerated; Marshall Plan rebuilt Western Europe; NATO vs Warsaw Pact defined Cold War blocs.' },
+      { q: 'How did economic factors contribute to political instability in 20th century history? Use two examples.', a: 'The Great Depression (1929) fuelled the rise of fascism in Germany and Italy. The oil crisis of 1973 created stagflation in Western economies, weakening faith in Keynesian consensus and paving the way for neoliberal policies in the 1980s.' },
+      { q: 'Critically evaluate the role of propaganda in 20th-century totalitarian regimes.', a: 'Nazi Germany (Goebbels\' propaganda ministry), Stalinist USSR (Socialist Realism, cult of personality), and Maoist China all used propaganda to suppress dissent, manufacture consent, and legitimise the regime. Propaganda was central to maintaining power but also reveals the fragility of totalitarian control.' },
+      { q: 'What was the significance of the Bretton Woods Agreement (1944)?', a: 'It established the post-war international monetary system: the US dollar pegged to gold, other currencies pegged to the dollar; created the IMF and World Bank. It underpinned Western economic stability until 1971.' },
+      { q: 'Explain the domino theory and assess its influence on US foreign policy during the Cold War.', a: 'The domino theory held that if one country fell to communism, neighbouring countries would follow. It justified US intervention in Korea, Vietnam, and Latin America, though many argue it oversimplified complex nationalist movements.' },
+    ],
+  },
+
+  'Computer Science': {
+    easy: [
+      { q: 'What is an algorithm?', a: 'An algorithm is a finite, ordered set of step-by-step instructions for solving a problem or completing a task.' },
+      { q: 'Convert the binary number 1011 to decimal.', a: '(1×8) + (0×4) + (1×2) + (1×1) = 8 + 0 + 2 + 1 = 11' },
+      { q: 'What is RAM and what is it used for?', a: 'RAM (Random Access Memory) is volatile short-term memory that temporarily stores data and instructions currently being used by the CPU.' },
+      { q: 'What is the difference between the internet and an intranet?', a: 'The internet is a global public network. An intranet is a private network accessible only to an organisation\'s members.' },
+      { q: 'Give two examples of input devices and two examples of output devices.', a: 'Input: keyboard, mouse, microphone, scanner. Output: monitor, printer, speakers.' },
+      { q: 'What does CPU stand for and what is its role?', a: 'Central Processing Unit — the primary component that executes instructions and performs calculations in a computer.' },
+      { q: 'What is a byte? How many bits are in a byte?', a: 'A byte is a unit of digital information consisting of 8 bits.' },
+      { q: 'What is the difference between hardware and software?', a: 'Hardware is the physical components of a computer (e.g., CPU, hard drive). Software is the set of instructions/programs that run on hardware.' },
+    ],
+    medium: [
+      { q: 'What does O(n log n) mean in Big O notation?', a: 'The algorithm\'s time grows proportionally to n × log₂(n) as input size n increases. Typical of efficient sorting algorithms like merge sort and quicksort (average case).' },
+      { q: 'Explain recursion and give a simple example.', a: 'Recursion is when a function calls itself to solve smaller sub-problems. Example: factorial(n) = n × factorial(n−1), with base case factorial(0) = 1.' },
+      { q: 'Write a SQL query to select all columns from a table called "students" where age is greater than 18.', a: 'SELECT * FROM students WHERE age > 18;' },
+      { q: 'Describe the four layers of the TCP/IP model.', a: '1) Application (HTTP, FTP, DNS), 2) Transport (TCP, UDP), 3) Internet (IP, ICMP), 4) Network Access / Link layer (Ethernet, Wi-Fi).' },
+      { q: 'How does a hash function work? Give a use case.', a: 'A hash function maps input data of any size to a fixed-size output (hash). Properties: deterministic, fast, one-way. Use case: storing passwords securely (store the hash, not the plain text).' },
+      { q: 'What is the difference between a stack and a queue?', a: 'Stack: LIFO (Last In First Out). Queue: FIFO (First In First Out). Stack operations: push/pop. Queue operations: enqueue/dequeue.' },
+      { q: 'What is the purpose of a foreign key in a relational database?', a: 'A foreign key is a field in one table that references the primary key of another table, enforcing referential integrity between related tables.' },
+      { q: 'What is the difference between TCP and UDP?', a: 'TCP is connection-oriented, reliable, ordered, and error-checked. UDP is connectionless, faster but unreliable — used where speed matters more than perfect delivery (e.g., video streaming).' },
+    ],
+    hard: [
+      { q: 'Prove that the time complexity of binary search is O(log n).', a: 'Each iteration halves the search space. Starting with n elements, after k iterations we have n/2ᵏ elements. The algorithm stops when n/2ᵏ = 1, i.e., k = log₂(n). So the number of steps is O(log n).' },
+      { q: 'Explain dynamic programming and give an example problem it solves efficiently.', a: 'DP solves problems by breaking them into overlapping sub-problems, caching (memoising) results. Example: Fibonacci — naïve recursion is O(2ⁿ); DP is O(n). Other examples: longest common subsequence, 0/1 knapsack.' },
+      { q: 'Explain how RSA public-key cryptography works at a high level.', a: 'Generate two large primes p, q; compute n = pq and Euler\'s totient φ(n). Choose public exponent e (coprime to φ(n)); compute private key d such that ed ≡ 1 (mod φ(n)). Encrypt: C = Mᵉ mod n. Decrypt: M = Cᵈ mod n. Security relies on difficulty of factoring n.' },
+      { q: 'Compare Round Robin and Shortest Job First (SJF) CPU scheduling algorithms.', a: 'Round Robin: gives each process a fixed time quantum in turn; fair but has context-switching overhead. SJF: schedules the process with the shortest burst time next; minimises average waiting time but can cause starvation of long processes and requires knowledge of burst time.' },
+      { q: 'Explain the first three normal forms (1NF, 2NF, 3NF) in database normalisation.', a: '1NF: eliminate repeating groups; all attributes atomic. 2NF: 1NF + no partial dependencies (every non-key attribute depends on the whole primary key). 3NF: 2NF + no transitive dependencies (non-key attributes depend only on the primary key).' },
+      { q: 'What is the halting problem and why does it matter in computer science?', a: 'The halting problem asks whether a program will halt or run forever on a given input. Turing proved (1936) it is undecidable — no general algorithm can solve it for all programs. It establishes fundamental limits of computation.' },
+      { q: 'Explain how a garbage collector works in a managed language like Java.', a: 'The GC automatically reclaims memory occupied by objects no longer reachable from the program. Common approaches: mark-and-sweep (mark live objects, sweep unreachable ones), generational GC (objects in young/old generations), and reference counting.' },
+      { q: 'What is a deadlock in operating systems? State the four Coffman conditions.', a: 'Deadlock: two or more processes are permanently blocked, each waiting for a resource held by the other. Coffman conditions: 1) Mutual exclusion, 2) Hold and wait, 3) No preemption, 4) Circular wait. Breaking any one condition prevents deadlock.' },
+    ],
+  },
+
+};

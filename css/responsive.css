@@ -1,0 +1,187 @@
+/* ==========================================================
+   responsive.css — Media queries for tablet and mobile
+   StudyMate AI – Intelligent Student Study Assistant
+   All colours reference custom properties from style.css
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   Tablet — max-width: 768px
+   ---------------------------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Show hamburger, hide inline nav links */
+  #nav-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    display: none;               /* Hidden by default on mobile */
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--space-sm) var(--space-md);
+    gap: 0.25rem;
+    z-index: 99;
+  }
+
+  /* Show when toggled open */
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 0.7rem 0.75rem;
+    font-size: 0.95rem;
+    border-radius: var(--radius-md);
+  }
+
+  /* Active indicator becomes left border on mobile */
+  .nav-link.active::after {
+    top: 0.25rem;
+    bottom: 0.25rem;
+    left: 0;
+    right: auto;
+    width: 3px;
+    height: auto;
+    border-radius: 9999px;
+  }
+
+  /* Collapse 3-col and 4-col grids to 2 columns */
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* About page: How It Works 3-col → 1 col on tablet */
+  .grid-how { grid-template-columns: 1fr !important; }
+
+  /* Progress tracker: 3-col form row → 2 cols on tablet */
+  .form-row-3 { grid-template-columns: 1fr 1fr; }
+
+  /* Progress page: reduce padding slightly */
+  .view-section {
+    padding-block: var(--space-lg);
+  }
+
+  /* Cards: slightly reduce padding */
+  .card {
+    padding: var(--space-md);
+  }
+
+  /* Modal: more padding on smaller screens */
+  .modal-box {
+    padding: var(--space-lg);
+  }
+
+  /* Toast: left-align on tablet */
+  #toast-container {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.2rem; }
+
+  /* Stat cards in a 2-col grid */
+  .stat-number {
+    font-size: 1.85rem;
+  }
+}
+
+/* ----------------------------------------------------------
+   Mobile — max-width: 480px
+   ---------------------------------------------------------- */
+@media (max-width: 480px) {
+
+  /* Tighten container padding */
+  .container {
+    padding-inline: var(--space-md);
+  }
+
+  /* Single-column all grids */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Planner two-col form row: stack on mobile */
+  .form-row-2 { grid-template-columns: 1fr; }
+
+  /* Progress tracker: 3-col form row → single col on mobile */
+  .form-row-3 { grid-template-columns: 1fr; }
+
+  /* Reduce headings further */
+  h1 { font-size: 1.35rem; }
+  h2 { font-size: 1.1rem; }
+
+  /* Full-width buttons in key action areas */
+  .btn-block-mobile {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Stack card headers vertically */
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  /* Smaller stat numbers */
+  .stat-number {
+    font-size: 1.6rem;
+  }
+
+  /* Reduce view padding */
+  .view-section {
+    padding-block: var(--space-md);
+  }
+
+  /* Modal nearly full-width */
+  .modal-box {
+    max-width: 100%;
+    width: 95%;
+    padding: var(--space-md);
+  }
+
+  /* Toast: near full width on very small screens */
+  #toast-container {
+    left: var(--space-md);
+    right: var(--space-md);
+    bottom: var(--space-md);
+  }
+
+  .toast {
+    max-width: 100%;
+  }
+
+  /* Section headers stack vertically */
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Planner subject rows: tighter spacing */
+  .subject-row {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  /* Data table: horizontal scroll if needed */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Task items: tighter */
+  .task-item {
+    gap: var(--space-xs);
+  }
+}

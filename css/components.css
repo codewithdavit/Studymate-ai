@@ -1,0 +1,612 @@
+/* ==========================================================
+   components.css — Reusable UI components
+   StudyMate AI – Intelligent Student Study Assistant
+   All colours reference custom properties from style.css
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   1. Card
+   ---------------------------------------------------------- */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: box-shadow var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ----------------------------------------------------------
+   2. Buttons
+   ---------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  line-height: 1.4;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Primary */
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+}
+
+/* Secondary */
+.btn-secondary {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-border) 80%, var(--color-muted) 20%);
+}
+
+/* Danger */
+.btn-danger {
+  background: var(--color-danger);
+  color: var(--color-surface);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-danger) 80%, black 20%);
+}
+
+/* Outline */
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+/* Small size modifier */
+.btn-sm {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.825rem;
+  border-radius: var(--radius-sm);
+}
+
+/* Icon-only button */
+.btn-icon {
+  padding: 0.35rem;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  color: var(--color-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.btn-icon:hover {
+  color: var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+}
+
+/* ----------------------------------------------------------
+   3. Badges
+   ---------------------------------------------------------- */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+  line-height: 1.4;
+}
+
+.badge-easy {
+  background: color-mix(in srgb, var(--color-success) 15%, transparent);
+  color: color-mix(in srgb, var(--color-success) 80%, black 20%);
+}
+
+.badge-medium {
+  background: color-mix(in srgb, var(--color-warning) 15%, transparent);
+  color: color-mix(in srgb, var(--color-warning) 80%, black 30%);
+}
+
+.badge-hard {
+  background: color-mix(in srgb, var(--color-danger) 12%, transparent);
+  color: color-mix(in srgb, var(--color-danger) 80%, black 20%);
+}
+
+.badge-info {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+}
+
+/* ----------------------------------------------------------
+   4. Progress Bar
+   ---------------------------------------------------------- */
+.progress-bar-wrap {
+  background: var(--color-border);
+  border-radius: 9999px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 9999px;
+  transition: width 400ms ease;
+  min-width: 0%;
+  max-width: 100%;
+}
+
+.progress-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-top: var(--space-xs);
+}
+
+/* ----------------------------------------------------------
+   5. Toast Notifications
+   ---------------------------------------------------------- */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  pointer-events: none;
+}
+
+.toast {
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  color: var(--color-surface);
+  font-size: 0.875rem;
+  font-weight: 500;
+  max-width: 320px;
+  pointer-events: auto;
+  animation: toastSlideUp 250ms ease forwards;
+  box-shadow: var(--shadow-md);
+}
+
+.toast-success { background: var(--color-success); }
+.toast-error   { background: var(--color-danger); }
+.toast-info    { background: var(--color-primary); }
+.toast-warning { background: var(--color-warning); }
+
+.toast.toast-fade-out {
+  animation: toastFadeOut 300ms ease forwards;
+}
+
+@keyframes toastSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* ----------------------------------------------------------
+   6. Modal
+   ---------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal-box {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  max-width: 480px;
+  width: 90%;
+  box-shadow: var(--shadow-md);
+  animation: fadeIn 200ms ease forwards;
+}
+
+.modal-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  color: var(--color-text);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+/* ----------------------------------------------------------
+   7. Form Elements
+   ---------------------------------------------------------- */
+.form-group {
+  margin-bottom: var(--space-md);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-muted);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+select {
+  cursor: pointer;
+}
+
+.form-error {
+  font-size: 0.8rem;
+  color: var(--color-danger);
+  margin-top: 0.25rem;
+}
+
+/* ----------------------------------------------------------
+   8. Stat Card
+   ---------------------------------------------------------- */
+.stat-card {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.stat-number {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+/* ----------------------------------------------------------
+   9. Empty State
+   ---------------------------------------------------------- */
+.empty-state {
+  display: block;
+  text-align: center;
+  color: var(--color-muted);
+  padding: var(--space-xl) var(--space-lg);
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.empty-state-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+/* ----------------------------------------------------------
+   10. Divider
+   ---------------------------------------------------------- */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin-block: var(--space-lg);
+}
+
+/* ----------------------------------------------------------
+   11. Section header row
+   ---------------------------------------------------------- */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+/* ----------------------------------------------------------
+   12. Collapsible / Accordion
+   ---------------------------------------------------------- */
+.collapsible-trigger {
+  width: 100%;
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--color-surface));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background var(--transition-fast);
+}
+
+.collapsible-trigger:hover {
+  background: color-mix(in srgb, var(--color-primary) 12%, var(--color-surface));
+}
+
+.collapsible-body {
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  padding: var(--space-md);
+  background: var(--color-surface);
+}
+
+.collapsible-body.hidden {
+  display: none;
+}
+
+/* ----------------------------------------------------------
+   13. Table
+   ---------------------------------------------------------- */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.data-table th {
+  font-weight: 600;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--color-bg);
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tr:hover td {
+  background: color-mix(in srgb, var(--color-primary) 4%, transparent);
+}
+
+/* ----------------------------------------------------------
+   14. Checkbox Task Item
+   ---------------------------------------------------------- */
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-checkbox {
+  width: auto;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--color-muted);
+}
+
+.task-meta {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-top: 0.15rem;
+}
+
+/* ----------------------------------------------------------
+   15. Feature Card (used in About / Dashboard)
+   ---------------------------------------------------------- */
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  transition: box-shadow 200ms, transform 200ms;
+}
+
+.feature-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+
+.feature-icon,
+.feature-card-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.feature-title,
+.feature-card-title {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.feature-desc,
+.feature-card-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+/* ----------------------------------------------------------
+   16. 3-column grid
+   ---------------------------------------------------------- */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+/* ----------------------------------------------------------
+   15. Planner — Subject rows, schedule table, form helpers
+   ---------------------------------------------------------- */
+
+/* Subject rows */
+.subject-row { display: flex; gap: 0.75rem; align-items: flex-end; margin-bottom: 0.75rem; flex-wrap: wrap; }
+.subject-row input { flex: 1; min-width: 120px; }
+.subject-row .hours-input { max-width: 130px; }
+
+/* Validation errors */
+.error-list { background: #fef2f2; border: 1px solid var(--color-danger); border-radius: 8px; padding: 0.75rem 1rem; color: var(--color-danger); font-size: 0.875rem; }
+.error-list ul { margin: 0; padding-left: 1.25rem; }
+
+/* Schedule table */
+.schedule-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.schedule-table th { background: var(--color-bg); padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid var(--color-border); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-muted); }
+.schedule-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--color-border); }
+.schedule-table tr:last-child td { border-bottom: none; }
+.schedule-table tr.day-first-row td:first-child { border-left: 3px solid var(--color-primary); }
+
+/* Form divider */
+.form-divider { border: none; border-top: 1px solid var(--color-border); margin: 1.25rem 0; }
+
+/* Two-col form row */
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+/* ----------------------------------------------------------
+   Question cards
+   ---------------------------------------------------------- */
+.question-card { margin-bottom: 1rem; }
+.question-card .q-number { font-size: 0.8rem; color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.question-card .q-text { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; line-height: 1.5; }
+.question-card .q-answer-wrap { margin-top: 0.5rem; }
+.question-card .q-answer { background: var(--color-bg); border-left: 3px solid var(--color-success); padding: 0.6rem 0.875rem; border-radius: 0 8px 8px 0; font-size: 0.9rem; margin-top: 0.5rem; display: none; }
+.question-card .q-answer.revealed { display: block; }
+.question-card .reveal-btn { font-size: 0.8rem; }
+
+/* ----------------------------------------------------------
+   Progress Tracker — Task items
+   ---------------------------------------------------------- */
+.task-item { display: flex; align-items: flex-start; gap: 0.875rem; padding: 0.875rem 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 10px; margin-bottom: 0.625rem; transition: opacity 200ms; }
+.task-item.completed { opacity: 0.6; }
+.task-item.completed .task-description { text-decoration: line-through; color: var(--color-muted); }
+.task-checkbox { width: 1.2rem; height: 1.2rem; cursor: pointer; accent-color: var(--color-primary); flex-shrink: 0; margin-top: 0.15rem; }
+.task-body { flex: 1; min-width: 0; }
+.task-subject-badge { display: inline-block; font-size: 0.75rem; font-weight: 600; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 9999px; padding: 0.1rem 0.6rem; margin-bottom: 0.3rem; color: var(--color-muted); }
+.task-description { font-size: 0.95rem; font-weight: 500; color: var(--color-text); margin: 0; }
+.task-due { font-size: 0.8rem; color: var(--color-muted); margin: 0.2rem 0 0; }
+.task-due.overdue { color: var(--color-danger); font-weight: 600; }
+.task-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+.task-filter-btn.active { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+
+/* Three-column form row */
+.form-row-3 { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 1rem; }
+
+/* Inline stat */
+.stat-inline { font-size: 0.9rem; }

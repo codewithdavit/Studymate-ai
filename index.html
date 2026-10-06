@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyMate AI – Intelligent Student Study Assistant</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ===== TOP NAVIGATION ===== -->
+  <nav id="main-nav" aria-label="Main navigation">
+    <div class="nav-inner container">
+      <a class="nav-brand" href="#dashboard" aria-label="StudyMate AI home">
+        📚 StudyMate AI
+      </a>
+
+      <!-- Hamburger toggle (visible on mobile only) -->
+      <button id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <!-- Nav links -->
+      <ul id="nav-menu" class="nav-menu" role="list">
+        <li><a href="#dashboard"  class="nav-link" data-view="dashboard">Dashboard</a></li>
+        <li><a href="#planner"    class="nav-link" data-view="planner">Planner</a></li>
+        <li><a href="#questions"  class="nav-link" data-view="questions">Questions</a></li>
+        <li><a href="#progress"   class="nav-link" data-view="progress">Progress</a></li>
+        <li><a href="#about"      class="nav-link" data-view="about">About</a></li>
+        <li><a href="#developer"  class="nav-link" data-view="developer">Developer</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main id="main-content">
+
+    <!-- Dashboard -->
+    <section id="view-dashboard" class="view-section" aria-labelledby="heading-dashboard">
+      <div class="container" style="padding-top:2rem; padding-bottom:3rem;">
+
+        <!-- Hero greeting card -->
+        <div class="card" style="margin-bottom:1.5rem; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); color: white; border:none;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <h1 style="margin:0 0 0.25rem; font-size:1.75rem; color:white;">📚 StudyMate AI</h1>
+              <p style="margin:0 0 0.5rem; opacity:0.9; font-size:1.05rem;">Intelligent Student Study Assistant</p>
+              <p id="dashboard-date" style="margin:0; opacity:0.75; font-size:0.9rem;"></p>
+            </div>
+            <div style="text-align:right;">
+              <p id="dashboard-greeting" style="margin:0; font-size:1.1rem; font-weight:600; color:white;"></p>
+              <p style="margin:0.25rem 0 0; opacity:0.8; font-size:0.85rem;">Ready to study today?</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary stat cards -->
+        <h2 style="margin:0 0 1rem; font-size:1.1rem; color:var(--color-muted); text-transform:uppercase; letter-spacing:0.05em;">Study Overview</h2>
+        <div class="grid-3" style="margin-bottom:2rem;">
+          <div class="card stat-card">
+            <div class="stat-number" id="stat-pending">—</div>
+            <div class="stat-label">Pending Tasks</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-number" id="stat-completed">—</div>
+            <div class="stat-label">Completed Tasks</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-number" id="stat-subjects">—</div>
+            <div class="stat-label">Subjects in Schedule</div>
+          </div>
+        </div>
+
+        <!-- Feature shortcut cards -->
+        <h2 style="margin:0 0 1rem; font-size:1.1rem; color:var(--color-muted); text-transform:uppercase; letter-spacing:0.05em;">Quick Access</h2>
+        <div class="grid-3">
+          <a href="#planner" class="card feature-card" style="text-decoration:none; color:inherit; display:block;">
+            <div class="feature-card-icon">🗓️</div>
+            <h3 class="feature-card-title">Study Planner</h3>
+            <p class="feature-card-desc">Enter your subjects, topics, and available time. Get a personalised day-by-day study schedule.</p>
+          </a>
+          <a href="#questions" class="card feature-card" style="text-decoration:none; color:inherit; display:block;">
+            <div class="feature-card-icon">❓</div>
+            <h3 class="feature-card-title">Practice Questions</h3>
+            <p class="feature-card-desc">Select a subject and difficulty. Get practice questions with hidden answers you can reveal.</p>
+          </a>
+          <a href="#progress" class="card feature-card" style="text-decoration:none; color:inherit; display:block;">
+            <div class="feature-card-icon">📊</div>
+            <h3 class="feature-card-title">Progress Tracker</h3>
+            <p class="feature-card-desc">Add study tasks, mark them done, and track your overall study progress with a visual bar.</p>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Planner -->
+    <section id="view-planner" class="view-section" aria-labelledby="heading-planner">
+      <div class="container" style="padding-top:2rem; padding-bottom:3rem;">
+
+        <h1 id="heading-planner">Study Planner</h1>
+        <p style="color:var(--color-muted); margin-top:0.25rem; margin-bottom:1.5rem;">
+          Enter your subjects and available time to generate a personalised day-by-day study schedule.
+        </p>
+
+        <!-- Input card -->
+        <div class="card" style="margin-bottom:1.5rem;">
+          <form id="planner-form" novalidate>
+
+            <!-- Subject rows -->
+            <div id="subject-rows">
+              <div class="subject-row">
+                <input type="text"   name="subject-name"  placeholder="e.g. Mathematics" aria-label="Subject name" />
+                <input type="text"   name="subject-topic" placeholder="e.g. Algebra"     aria-label="Topic" />
+                <input type="number" name="subject-hours" placeholder="Hours needed" min="0.5" step="0.5" class="hours-input" aria-label="Hours needed" />
+                <button type="button" class="btn btn-danger btn-sm" aria-label="Remove subject row" style="display:none;">✕</button>
+              </div>
+            </div>
+
+            <button type="button" id="add-subject-btn" class="btn btn-outline btn-sm" style="margin-bottom:1rem;">＋ Add Subject</button>
+
+            <hr class="form-divider" />
+
+            <!-- Global fields -->
+            <div class="form-row-2">
+              <div>
+                <label for="daily-hours" style="display:block; font-size:0.875rem; font-weight:600; margin-bottom:0.35rem;">Daily Study Hours Available</label>
+                <input type="number" id="daily-hours" min="0.5" step="0.5" placeholder="e.g. 3" />
+              </div>
+              <div>
+                <label for="target-date" style="display:block; font-size:0.875rem; font-weight:600; margin-bottom:0.35rem;">Target Completion Date</label>
+                <input type="date" id="target-date" />
+              </div>
+            </div>
+
+            <!-- Validation errors -->
+            <div id="planner-errors" class="error-list" style="display:none; margin-top:1rem;"></div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top:1.25rem;">Generate Schedule</button>
+          </form>
+        </div>
+
+        <!-- Output area (hidden until schedule generated) -->
+        <div id="planner-output" style="display:none;">
+
+          <!-- Summary cards injected by JS -->
+          <div id="schedule-summary" style="margin-bottom:1.25rem;"></div>
+
+          <!-- Toggle day-by-day -->
+          <button id="toggle-dayview-btn" class="btn btn-outline btn-sm" style="margin-bottom:1rem;">▼ Show Day-by-Day Schedule</button>
+
+          <!-- Day-by-day table -->
+          <div id="schedule-dayview" style="display:none; margin-bottom:1.5rem;">
+            <div class="table-wrap">
+              <table id="schedule-table" class="schedule-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Subject</th>
+                    <th>Topic</th>
+                    <th>Hours</th>
+                  </tr>
+                </thead>
+                <tbody id="schedule-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Clear link -->
+          <div style="margin-top:0.5rem;">
+            <button id="clear-schedule-btn" class="btn btn-sm" style="background:none; border:none; color:var(--color-danger); cursor:pointer; padding:0; font-size:0.875rem; text-decoration:underline;">Clear Schedule</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Practice Questions -->
+    <section id="view-questions" class="view-section" aria-labelledby="heading-questions">
+      <div class="container" style="padding-top:2rem; padding-bottom:3rem;">
+        <h1 id="heading-questions">Practice Question Generator</h1>
+        <p style="color:var(--color-muted); margin-bottom:1.5rem;">Select a subject and difficulty to generate practice questions. Answers are hidden — reveal them when you're ready.</p>
+
+        <!-- Controls card -->
+        <div class="card" style="margin-bottom:1.5rem;">
+          <div class="form-row-2" style="align-items:flex-end; gap:1rem;">
+            <div class="form-group" style="margin:0;">
+              <label for="q-subject">Subject / Topic</label>
+              <input type="text" id="q-subject" placeholder="e.g. Mathematics, Algebra, Photosynthesis…" list="subject-suggestions" autocomplete="off">
+              <datalist id="subject-suggestions">
+                <option value="Mathematics">
+                <option value="Physics">
+                <option value="Chemistry">
+                <option value="Biology">
+                <option value="History">
+                <option value="Computer Science">
+              </datalist>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label for="q-difficulty">Difficulty</label>
+              <select id="q-difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row-2" style="margin-top:1rem; align-items:flex-end; gap:1rem;">
+            <div class="form-group" style="margin:0;">
+              <label for="q-count">Number of Questions</label>
+              <select id="q-count">
+                <option value="3">3</option>
+                <option value="5" selected>5</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            <div style="display:flex; gap:0.75rem; align-items:flex-end;">
+              <button id="q-generate-btn" class="btn btn-primary" style="flex:1;">Generate Questions</button>
+              <button id="q-reveal-all-btn" class="btn btn-outline btn-sm" style="display:none;">Reveal All</button>
+            </div>
+          </div>
+          <div id="q-error" style="display:none; margin-top:0.75rem;" class="error-list"></div>
+        </div>
+
+        <!-- Questions output -->
+        <div id="q-output" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <h2 id="q-output-title" style="margin:0; font-size:1.1rem;"></h2>
+            <span id="q-source-badge" class="badge badge-info"></span>
+          </div>
+          <div id="q-cards-container"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress Tracker -->
+    <section id="view-progress" class="view-section" aria-labelledby="heading-progress">
+      <div class="container" style="padding-top:2rem; padding-bottom:3rem;">
+        <h1 id="heading-progress">Progress Tracker</h1>
+        <p style="color:var(--color-muted); margin-bottom:1.5rem;">Add study tasks, mark them complete, and track your overall progress.</p>
+
+        <!-- Add task card -->
+        <div class="card" style="margin-bottom:1.5rem;">
+          <h2 style="margin:0 0 1rem; font-size:1.05rem;">Add New Task</h2>
+          <form id="add-task-form">
+            <div class="form-row-3">
+              <div class="form-group" style="margin:0;">
+                <label for="task-subject">Subject</label>
+                <input type="text" id="task-subject" placeholder="e.g. Mathematics" required>
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label for="task-description">Description</label>
+                <input type="text" id="task-description" placeholder="e.g. Revise Chapter 3 — Algebra" required>
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label for="task-due">Due Date <span style="color:var(--color-muted); font-weight:400;">(optional)</span></label>
+                <input type="date" id="task-due">
+              </div>
+            </div>
+            <div style="margin-top:1rem;">
+              <button type="submit" class="btn btn-primary">＋ Add Task</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Progress overview card -->
+        <div class="card" style="margin-bottom:1.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+            <h2 style="margin:0; font-size:1.05rem;">Overall Progress</h2>
+            <div style="display:flex; gap:1.5rem;">
+              <span class="stat-inline"><strong id="prog-total">0</strong> <span style="color:var(--color-muted);">Total</span></span>
+              <span class="stat-inline"><strong id="prog-completed" style="color:var(--color-success);">0</strong> <span style="color:var(--color-muted);">Done</span></span>
+              <span class="stat-inline"><strong id="prog-remaining" style="color:var(--color-warning);">0</strong> <span style="color:var(--color-muted);">Left</span></span>
+            </div>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="prog-bar" style="width:0%;"></div>
+          </div>
+          <p id="prog-percent-label" style="text-align:right; font-size:0.8rem; color:var(--color-muted); margin:0.4rem 0 0;">0% complete</p>
+        </div>
+
+        <!-- Filter bar -->
+        <div style="display:flex; gap:0.75rem; margin-bottom:1rem; flex-wrap:wrap; align-items:center;">
+          <span style="font-size:0.875rem; color:var(--color-muted);">Filter:</span>
+          <button class="btn btn-sm btn-outline task-filter-btn active" data-filter="all">All</button>
+          <button class="btn btn-sm btn-outline task-filter-btn" data-filter="pending">Pending</button>
+          <button class="btn btn-sm btn-outline task-filter-btn" data-filter="completed">Completed</button>
+          <button id="clear-completed-btn" class="btn btn-sm btn-danger" style="margin-left:auto;">Clear Completed</button>
+        </div>
+
+        <!-- Task list -->
+        <div id="task-list-container"></div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="view-about" class="view-section" aria-labelledby="heading-about">
+      <div class="container" style="padding-top:2rem; padding-bottom:3rem;">
+
+        <!-- Hero -->
+        <div class="card" style="margin-bottom:2rem; text-align:center; padding:2.5rem 2rem; background:linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); color:white; border:none;">
+          <div style="font-size:3rem; margin-bottom:0.75rem;">📚</div>
+          <h1 id="heading-about" style="margin:0 0 0.5rem; color:white; font-size:2rem;">StudyMate AI</h1>
+          <p style="margin:0 0 1rem; font-size:1.1rem; opacity:0.9;">Intelligent Student Study Assistant</p>
+          <p style="margin:0 auto; max-width:560px; opacity:0.8; font-size:0.95rem; line-height:1.7;">
+            StudyMate AI helps students organise their studies, practice what they've learned, and track progress — all without needing an internet connection or any external services.
+          </p>
+        </div>
+
+        <!-- Mission -->
+        <div class="card" style="margin-bottom:1.5rem;">
+          <h2 style="margin:0 0 0.75rem;">Our Mission</h2>
+          <p style="margin:0; color:var(--color-muted); line-height:1.7;">
+            Students often struggle to structure their revision time effectively, find relevant practice questions, and maintain a clear view of their study progress. StudyMate AI addresses these challenges by providing a single, distraction-free environment where every study tool is one click away — no logins, no subscriptions, no internet required.
+          </p>
+        </div>
+
+        <!-- How it works -->
+        <h2 style="margin:0 0 1rem;">How It Works</h2>
+        <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:1rem; margin-bottom:2rem;" class="grid-how">
+          <div class="card" style="text-align:center;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">1️⃣</div>
+            <h3 style="margin:0 0 0.4rem; font-size:1rem;">Plan Your Study</h3>
+            <p style="margin:0; font-size:0.875rem; color:var(--color-muted);">Enter your subjects, topics, available hours, and target date. The planner generates a personalised schedule.</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">2️⃣</div>
+            <h3 style="margin:0 0 0.4rem; font-size:1rem;">Practice with Questions</h3>
+            <p style="margin:0; font-size:0.875rem; color:var(--color-muted);">Select a subject and difficulty. Get practice questions with hidden answers — reveal them when you're ready to check.</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">3️⃣</div>
+            <h3 style="margin:0 0 0.4rem; font-size:1rem;">Track Your Progress</h3>
+            <p style="margin:0; font-size:0.875rem; color:var(--color-muted);">Add study tasks to your checklist, mark them complete, and watch your progress bar grow.</p>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <h2 style="margin:0 0 1rem;">Core Features</h2>
+        <div class="grid-3" style="margin-bottom:2rem;">
+          <div class="card">
+            <div style="font-size:1.5rem; margin-bottom:0.5rem;">🗓️</div>
+            <h3 style="margin:0 0 0.4rem; font-size:1rem;">Smart Study Planner</h3>
+            <p style="margin:0; font-size:0.875rem; color:var(--color-muted);">Distributes your study hours proportionally across subjects and generates a day-by-day calendar.</p>
+          </div>
+          <div class="card">
+            <div style="font-size:1.5rem; margin-bottom:0.5rem;">❓</div>
+            <h3 style="margin:0 0 0.4rem; font-size:1rem;">Practice Question Engine</h3>
+            <p style="margin:0; font-size:0.875rem; color:var(--color-muted);">288 curated questions across 6 subjects and 3 difficulty tiers. Template fallback for any topic.</p>
+          </div>
+          <div class="card">
+            <div style="font-size:1.5rem; margin-bottom:0.5rem;">📊</div>
+            <h3 style="margin:0 0 0.4rem; font-size:1rem;">Progress Tracker</h3>
+            <p style="margin:0; font-size:0.875rem; color:var(--color-muted);">Visual progress bar and task checklist. Filter by status, mark tasks done, and clear completed items.</p>
+          </div>
+          <div class="card">
+            <div style="font-size:1.5rem; margin-bottom:0.5rem;">💾</div>
+            <h3 style="margin:0 0 0.4rem; font-size:1rem;">Offline &amp; Private</h3>
+            <p style="margin:0; font-size:0.875rem; color:var(--color-muted);">All data stays in your browser's localStorage. No server, no login, no data leaves your device.</p>
+          </div>
+          <div class="card">
+            <div style="font-size:1.5rem; margin-bottom:0.5rem;">📱</div>
+            <h3 style="margin:0 0 0.4rem; font-size:1rem;">Fully Responsive</h3>
+            <p style="margin:0; font-size:0.875rem; color:var(--color-muted);">Works on desktop, tablet, and mobile. Clean layout that adapts to any screen size.</p>
+          </div>
+          <div class="card">
+            <div style="font-size:1.5rem; margin-bottom:0.5rem;">⚡</div>
+            <h3 style="margin:0 0 0.4rem; font-size:1rem;">Zero Setup</h3>
+            <p style="margin:0; font-size:0.875rem; color:var(--color-muted);">Open index.html in any modern browser. No installation, no build tools, no internet needed.</p>
+          </div>
+        </div>
+
+        <!-- Target Users -->
+        <div class="card">
+          <h2 style="margin:0 0 0.75rem;">Who Is This For?</h2>
+          <p style="margin:0; color:var(--color-muted); line-height:1.7;">
+            StudyMate AI is designed for <strong>secondary school and university students</strong> who want a simple, focused tool to help them structure revision, test their knowledge, and stay on top of their study workload — without the distraction of complex apps or the cost of subscription services.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Developer -->
+    <section id="view-developer" class="view-section" aria-labelledby="heading-developer">
+      <div class="container" style="padding-top:2rem; padding-bottom:3rem;">
+        <h1 id="heading-developer">Developer &amp; Project Info</h1>
+        <p style="color:var(--color-muted); margin-bottom:1.5rem;">Technical information about StudyMate AI for academic submission and reference.</p>
+
+        <!-- Project metadata card -->
+        <div class="card" style="margin-bottom:1.5rem;">
+          <h2 style="margin:0 0 1rem; font-size:1.05rem;">Project Details</h2>
+          <table style="width:100%; border-collapse:collapse; font-size:0.925rem;">
+            <tbody>
+              <tr><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border); width:38%; color:var(--color-muted); font-weight:500;">Project Name</td><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border);">StudyMate AI – Intelligent Student Study Assistant</td></tr>
+              <tr><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border); color:var(--color-muted); font-weight:500;">Version</td><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border);">1.0.0</td></tr>
+              <tr><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border); color:var(--color-muted); font-weight:500;">Type</td><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border);">Academic Web Application Project</td></tr>
+              <tr><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border); color:var(--color-muted); font-weight:500;">Status</td><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border);"><span class="badge badge-easy">Active</span></td></tr>
+              <tr><td style="padding:0.5rem 0; color:var(--color-muted); font-weight:500;">License</td><td style="padding:0.5rem 0;">MIT</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Technology stack -->
+        <div class="card" style="margin-bottom:1.5rem;">
+          <h2 style="margin:0 0 1rem; font-size:1.05rem;">Technology Stack</h2>
+          <table style="width:100%; border-collapse:collapse; font-size:0.925rem;">
+            <thead>
+              <tr>
+                <th style="padding:0.5rem 0.75rem; text-align:left; background:var(--color-bg); border-bottom:2px solid var(--color-border); color:var(--color-muted); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.04em;">Technology</th>
+                <th style="padding:0.5rem 0.75rem; text-align:left; background:var(--color-bg); border-bottom:2px solid var(--color-border); color:var(--color-muted); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.04em;">Purpose</th>
+                <th style="padding:0.5rem 0.75rem; text-align:left; background:var(--color-bg); border-bottom:2px solid var(--color-border); color:var(--color-muted); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.04em;">Version</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">HTML5</td><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">Page structure and semantics</td><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">5</td></tr>
+              <tr><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">CSS3</td><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">Styling, layout, responsive design</td><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">3</td></tr>
+              <tr><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">JavaScript (ES6+)</td><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">Application logic, DOM manipulation, routing</td><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">ES2020+</td></tr>
+              <tr><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">Web Storage API</td><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">localStorage for data persistence</td><td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--color-border);">Browser built-in</td></tr>
+              <tr><td style="padding:0.55rem 0.75rem;">Crypto API</td><td style="padding:0.55rem 0.75rem;">Unique task ID generation (crypto.randomUUID)</td><td style="padding:0.55rem 0.75rem;">Browser built-in</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Architecture -->
+        <div class="card" style="margin-bottom:1.5rem;">
+          <h2 style="margin:0 0 0.75rem; font-size:1.05rem;">Architecture Overview</h2>
+          <p style="margin:0 0 0.75rem; color:var(--color-muted); font-size:0.9rem; line-height:1.6;">StudyMate AI follows a simple three-layer architecture:</p>
+          <ul style="margin:0; padding-left:1.25rem; color:var(--color-muted); font-size:0.9rem; line-height:1.9;">
+            <li><strong style="color:var(--color-text);">Presentation Layer</strong> — <code>index.html</code> + CSS files: all markup and styling. Sections are toggled by the router.</li>
+            <li><strong style="color:var(--color-text);">Application Logic Layer</strong> — JS modules (<code>app.js</code>, <code>planner.js</code>, <code>questions.js</code>, <code>progress.js</code>, <code>dashboard.js</code>, <code>ui.js</code>): feature logic, DOM rendering.</li>
+            <li><strong style="color:var(--color-text);">Data Layer</strong> — <code>storage.js</code> + <code>data/questionBank.js</code>: localStorage persistence and static question data.</li>
+          </ul>
+        </div>
+
+        <!-- Project structure -->
+        <div class="card" style="margin-bottom:1.5rem;">
+          <h2 style="margin:0 0 0.75rem; font-size:1.05rem;">Project Structure</h2>
+          <pre style="margin:0; background:var(--color-bg); padding:1rem; border-radius:8px; font-size:0.82rem; overflow-x:auto; line-height:1.7; color:var(--color-text);">studymate-ai/
+├── index.html              ← Single-page app shell
+├── README.md               ← Setup, usage, and testing guide
+├── css/
+│   ├── style.css           ← Global styles and CSS custom properties
+│   ├── components.css      ← Reusable UI components
+│   └── responsive.css      ← Mobile and tablet breakpoints
+├── js/
+│   ├── app.js              ← Router and app entry point
+│   ├── storage.js          ← localStorage wrapper
+│   ├── planner.js          ← Study planner logic
+│   ├── questions.js        ← Question engine
+│   ├── progress.js         ← Progress tracker and checklist
+│   ├── dashboard.js        ← Dashboard widgets
+│   └── ui.js               ← Shared UI utilities
+└── data/
+    └── questionBank.js     ← Static question bank (288 questions)</pre>
+        </div>
+
+        <!-- How to run -->
+        <div class="card" style="margin-bottom:1.5rem;">
+          <h2 style="margin:0 0 0.75rem; font-size:1.05rem;">How to Run</h2>
+          <ol style="margin:0; padding-left:1.25rem; color:var(--color-muted); font-size:0.9rem; line-height:2;">
+            <li>Download or clone the <code>studymate-ai/</code> folder.</li>
+            <li>Open <code>index.html</code> in any modern browser (Chrome, Firefox, Edge, Safari).</li>
+            <li>No installation, no build step, no internet connection required.</li>
+            <li>All data is saved automatically in your browser's localStorage.</li>
+          </ol>
+        </div>
+
+        <!-- Developer info -->
+        <div class="card">
+          <h2 style="margin:0 0 1rem; font-size:1.05rem;">Developer Information</h2>
+          <table style="width:100%; border-collapse:collapse; font-size:0.925rem;">
+            <tbody>
+              <tr><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border); width:38%; color:var(--color-muted); font-weight:500;">Developer</td><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border);">Student Developer</td></tr>
+              <tr><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border); color:var(--color-muted); font-weight:500;">Institution</td><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border);">Academic Institution</td></tr>
+              <tr><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border); color:var(--color-muted); font-weight:500;">Project Context</td><td style="padding:0.5rem 0; border-bottom:1px solid var(--color-border);">Web Development / AI Application Design Course Project</td></tr>
+              <tr><td style="padding:0.5rem 0; color:var(--color-muted); font-weight:500;">Built With</td><td style="padding:0.5rem 0;">IBM Bob AI Coding Assistant</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== TOAST NOTIFICATION CONTAINER ===== -->
+  <div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- ===== MODAL OVERLAY ===== -->
+  <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div id="modal-box" class="modal-box">
+      <!-- Populated dynamically by ui.js -->
+    </div>
+  </div>
+
+  <!-- ===== APP ENTRY POINT ===== -->
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
